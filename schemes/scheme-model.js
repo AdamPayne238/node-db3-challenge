@@ -16,7 +16,8 @@ module.exports = {
 //   - Calling find returns a promise that resolves to an array of all schemes in the database.
 //   - No steps are included.
 function find(){
-    return db.select('*').from('schemes');
+    return db.select('*')
+    .from('schemes');
 }
 
 //WORKING
@@ -38,7 +39,7 @@ function findById(id){
 function findSteps(id){
     return db('schemes as sc')
     .join('steps as st', 'sc.id', '=', 'st.sc.id')
-    .select('sc.id', 'sc.scheme_name', 'st.step_number', 'st.instructions')
+    .select('st.id', 'st.scheme_name', 'st.step_number', 'st.instructions')
     .where({ id })
 }
 
